@@ -27,6 +27,7 @@
         <br>
         <br>
         <a href="postajob.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post a Job</a>
+        <a href="usermassage.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Massage</a>
         <a href="processlogout.php?logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
         </form>
     </div>
