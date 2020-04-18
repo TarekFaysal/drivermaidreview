@@ -8,21 +8,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Welcome to Driver Maid Review</title>
+    <title>Worker</title>
   </head>
   <body>
-    
+  <div class="container">
+  <h1>Worker</h1>
     <div class="row justify-content-center">
-    <h1>Welcome to Driver Maid Review Home Page</h1>
-      <form action="" method="POST">
+       
+        <form action="" method="POST">
+        <a href="drivingjobs.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Look For Drivering Jobs</a>
+        <a href="maidjobs.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Look For Maid Jobs</a>
         
-      <a href="usersignin.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign In AS User</a>
-      <a href="workersignin.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign In AS Worker</a>
-      <br>
-      <br>
-      <a href="usersignup.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign Up AS User</a>
-      <a href="Workersignup.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign Up AS Worker</a>
-      </form>
+        
+        </form>
+    </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

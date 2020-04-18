@@ -7,28 +7,43 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>User Sign in</title>
+    <title>Job Post</title>
   </head>
   <body>
-    <h1>User Sign in</h1>
-	 <?php require_once 'processuserlogin.php'; ?>
+  <div class="container">
+    <h1>Job Post</h1>
+    <?php require_once 'processpostajob.php'; ?>
     <div class="row justify-content-center">
-        <form action="processuserlogin.php" method="POST">
-		
-		<div class="form-group">
-                <label>ID</label>
-                <input type="text" name="userid" class="form-control" placeholder="Enter your Id">
-            </div>
-			<div class="form-group">
-                <label>Password</label>
-                <input type="password" name="userpassword" class="form-control" placeholder="Enter your Password">
+        <form action="processpostajob.php" method="POST">
+
+            <div class="form-group">
+                <label>Job ID</label>
+                <input type="text" name="jobid" class="form-control" placeholder="Enter Job Id">
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" name="signup">sign in</button>
+                <label>User ID</label>
+                <input type="text" name="userid" class="form-control" placeholder="Enter User Id">
             </div>
-		</form>
+            <div class="form-group">
+                <label>Worker Type</label>
+                <input type="number" name="wtype" class="form-control" placeholder="Enter Worker Type">
+            </div>
+            <div class="form-group">
+                <label>Salary</label>
+                <input type="number" name="salary" class="form-control" placeholder="Enter salary">
+            </div>
+            <div class="form-group">
+                <label>Details</label>
+                <input type="text" name="details" class="form-control" placeholder="Enter any Details">
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" name="postajob">Post a Job</button>
+            </div>
+        </form>
     </div>
-
+    
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
