@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "root";
@@ -23,10 +24,13 @@ if(isset($_POST['userid'])){
     
     if(mysqli_num_rows($result)==1){
         echo " You Have Successfully Logged in";
+        $_SESSION['userid']=$_POST['userid'];
+        header("location:user.php");
         exit();
     }
     else{
         echo " You Have Entered Incorrect Password";
+        header("location:usersignin.php?Incorrect= You entered incorrect password, Try again");
         exit();
     }
         

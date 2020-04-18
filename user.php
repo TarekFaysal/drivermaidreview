@@ -1,3 +1,10 @@
+<?php session_start();
+      if(isset($_SESSION['userid'])){ 
+        
+        $userid = $_SESSION['userid'];
+        echo 'Welcome ' . $userid; 
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,7 +27,7 @@
         <br>
         <br>
         <a href="postajob.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post a Job</a>
-        
+        <a href="processlogout.php?logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
         </form>
     </div>
     <!-- Optional JavaScript -->
@@ -30,3 +37,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
+
+      <?php } ?>

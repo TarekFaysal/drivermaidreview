@@ -1,3 +1,6 @@
+<?php session_start();
+      if(isset($_SESSION['userid'])){ 
+        ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -87,3 +90,4 @@
   </body>
 
 </html>
+    <?php } ?>

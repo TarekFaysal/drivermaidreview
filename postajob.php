@@ -1,3 +1,9 @@
+<?php session_start();
+      if(isset($_SESSION['userid'])){ 
+
+      
+        ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,10 +26,7 @@
                 <label>Job ID</label>
                 <input type="text" name="jobid" class="form-control" placeholder="Enter Job Id">
             </div>
-            <div class="form-group">
-                <label>User ID</label>
-                <input type="text" name="userid" class="form-control" placeholder="Enter User Id">
-            </div>
+            
             <div class="form-group">
                 <label>Worker Type</label>
                 <input type="number" name="wtype" class="form-control" placeholder="Enter Worker Type">
@@ -51,3 +54,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
+
+      <?php } ?>

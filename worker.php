@@ -1,3 +1,9 @@
+<?php session_start();
+      if(isset($_SESSION['workerid'])){ 
+        
+        $workerid = $_SESSION['workerid'];
+        echo 'Welcome ' . $workerid; 
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,11 +20,15 @@
   <div class="container">
   <h1>Worker</h1>
     <div class="row justify-content-center">
-       
+      
+
+
+
+      
         <form action="" method="POST">
         <a href="drivingjobs.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Look For Drivering Jobs</a>
         <a href="maidjobs.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Look For Maid Jobs</a>
-        
+        <a href="processlogout.php?logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
         
         </form>
     </div>
@@ -30,3 +40,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
+<?php } ?>

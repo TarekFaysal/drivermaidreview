@@ -1,3 +1,10 @@
+<?php session_start();
+      if(isset($_SESSION['userid'])){ 
+
+        $userid = $_SESSION['userid'];
+        ?>
+
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -14,7 +21,7 @@ if ($conn->connect_error) {
 
 if (isset($_POST['postajob'])){
     $jobid = $_POST['jobid'];
-    $userid = $_POST['userid'];
+    //$userid = $_POST['userid'];
     $wtype = $_POST['wtype'];
     $salary = $_POST['salary'];
     $details = $_POST['details'];
@@ -29,3 +36,5 @@ if (isset($_POST['postajob'])){
 
 $conn->close();
 ?>
+
+<?php } ?>

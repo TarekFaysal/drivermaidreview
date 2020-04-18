@@ -1,3 +1,8 @@
+<?php session_start();
+      if(isset($_SESSION['workerid'])){ 
+        ?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -76,3 +81,5 @@
   </body>
 
 </html>
+
+    <?php } ?>

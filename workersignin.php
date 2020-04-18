@@ -28,6 +28,17 @@
                 <button type="submit" class="btn btn-primary" name="signup">sign in</button>
             </div>
 		</form>
+    <?php
+      if(@$_GET['Incorrect']==true){
+    ?>
+      <div class="alert-light text-danger">
+      <?php echo $_GET['Incorrect'] ?>
+      
+      </div>
+    <?php
+      }
+
+    ?>
     </div>
 
     <!-- Optional JavaScript -->
