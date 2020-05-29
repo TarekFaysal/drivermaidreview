@@ -2,7 +2,7 @@
       if(isset($_SESSION['workerid'])){ 
         
         $workerid = $_SESSION['workerid'];
-        echo 'Welcome ' . $workerid; 
+       
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,27 +13,31 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="style.css">
     <title>Worker</title>
   </head>
   <body>
-  <div class="container">
-  <h1>Worker</h1>
+  <a class="btn btn-outline-info" href="worker.php" role="button">Worker</a>
+  <p>Welcome <?php echo $workerid?></p>
     <div class="row justify-content-center">
       
-
+    <div class="topnav">
+       
+    <a href="drivingjobs.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Look For Drivering Jobs</a>
+        <a href="maidjobs.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Look For Maid Jobs</a>
+       </div>
+    <div class="topnav">
 
 
       
         <form action="" method="POST">
-        <a href="drivingjobs.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Look For Drivering Jobs</a>
-        <a href="maidjobs.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Look For Maid Jobs</a>
-        <a href="workermassage.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Massage</a>
-        <a href="processlogout.php?logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
         
+        <a href="workermassage.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Massage</a>
+        <a href="processlogout.php?logout" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Logout</a>
+      </div>
         </form>
     </div>
-    </div>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

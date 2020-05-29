@@ -2,8 +2,27 @@
       if(isset($_SESSION['adminid'])){ 
         
         $adminid = $_SESSION['adminid'];
+?>
 
-    
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Admin</title>
+  </head>
+   
+  <body>
+  <a class="btn btn-outline-info" href="admin.php" role="button">Admin</a><br>
+  <?php    
 //Connect to your database....
 $con=mysqli_connect("localhost","root","root","workerreview");
 $contact_array = mysqli_query($con,"SELECT * FROM admin WHERE $adminid = '1234' ");
@@ -18,29 +37,14 @@ echo"<br/>";
 
         
 ?>
+  <div class="row justify-content-center">
+    <div class="topnav">
+       
+    <a href="usermessage.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Send Massage</a>
+    <a href="processlogout.php?logout" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Logout</a>
+       </div>
+</div>
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>Admin</title>
-  </head>
-   
-  <body>
-    <h1>Admin</h1>
-	<br>
-    <br>
-	<a href="usermessage.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Send Massage</a>
-  
-	
-	<br>
-    <br>
 	
 
     <!-- Optional JavaScript -->

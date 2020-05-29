@@ -7,11 +7,11 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>Message to User</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Send Massage to User</title>
   </head>
   <body>
-    <h1>Message to User</h1>
+  <a class="btn btn-outline-info" href="usermessage.php" role="button">Send Massage to User</a>
 	
  <?php require_once 'processadminmesssagetouser.php'; ?>
     <div class="row justify-content-center">
@@ -35,24 +35,33 @@
         </form>
     </div>
 <br/><br/>
-<b>Reply Users:</b>
-    
-	
+<div class="massage" style=" width:500px; align-content: center;">
+<div class="blockquote text-left">Massages:</div>
+
+
 <?php
 //Connect to your database....
 $con=mysqli_connect("localhost","root","root","workerreview");
-$contact_array = mysqli_query($con,"SELECT * FROM massage WHERE toperson = '1234' ORDER BY massageid ASC");
+$contact_array = mysqli_query($con,"SELECT * FROM massage WHERE 1 ORDER BY massageid ASC");
 while($row = mysqli_fetch_array($contact_array))
 {
-echo"User ID: ";
-echo $row['fromperson'];
-echo"<br/>";
-echo"Message: ";
-echo $row['massage'];
-echo"<br/>";
+
+
+  if($row['fromperson']!='1234'){
+    ?>
+    <div class="leftmassage" style="text-align:left;color:red; border:20px"> 
+    <?php  echo $row['fromperson']." -> " .$row['massage'];?></div>
+    <?php
+  }else{?>
+    <div class="rightmassage" style="text-align:right;color:blue"> 
+    <?php echo $row['massage']."->".$row['toperson'] ;?></div>
+  <?php }
+  
 
 }
 ?>
+<a href="admin.php" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Go Back</a>    
+</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

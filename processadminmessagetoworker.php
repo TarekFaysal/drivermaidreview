@@ -13,9 +13,9 @@ if ($conn->connect_error) {
 
 
 if (isset($_POST['submit'])){
-    $massageid= $_POST['massageid'];
+    
     $toperson = $_POST['toperson'];
-   $fromperson= $_POST['fromperson'];
+   $fromperson= 1234;
     $massage = $_POST['massage'];
 
 
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])){
 
     $sql ="INSERT INTO `massage` (`massageid`, `fromperson`, `toperson`, `massage`) VALUES ('$massageid', '$fromperson', '$toperson', '$massage ')"; 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        header("location:usermessage.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

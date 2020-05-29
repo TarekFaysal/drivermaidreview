@@ -28,9 +28,9 @@ if (isset($_POST['signup'])){
 
     $sql = "INSERT INTO `worker`(`workerid`, `workername`, `workerpassword`, `workerphone`, `workeradress`, `workerage`, `workergender`, `wtype`, `minimumwage`, `active`) VALUES ('$workerid','$workername','$workerpassword','$workerphone','$workeradress','$workerage','$workergender','$workerwtype','$workerminimumwage',1)";
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        header("location:index.php");
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        header("location:workersignup.php?Incorrect= Please Fill Up The Form Correctly");
     }
 }
 

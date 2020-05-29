@@ -25,9 +25,11 @@ if (isset($_POST['signup'])){
 
     $sql = "INSERT INTO `users`(`userid`, `username`, `userpassword`, `userphone`, `useremail`, `useradress`, `userage`, `usergender`, `active`) VALUES ('$userid','$username','$userpassword','$userphone','$useremail','$useradress','$userage','$usergender',1)";
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        header("location:index.php");
+        exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        header("location:usersignup.php?Incorrect= Please Fill Up The Form Correctly");
+        exit();
     }
 }
 

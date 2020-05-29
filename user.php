@@ -2,7 +2,7 @@
       if(isset($_SESSION['userid'])){ 
         
         $userid = $_SESSION['userid'];
-        echo 'Welcome ' . $userid; 
+  
 ?>
 
 <!doctype html>
@@ -14,21 +14,28 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="style.css">
     <title>User</title>
   </head>
   <body>
-  <h1>User</h1>
+  <a class="btn btn-outline-info" href="user.php" role="button">User</a>
+  <p>Welcome <?php echo $userid?></p>
+
     <div class="row justify-content-center">
+    <div class="topnav">
        
-        <form action="" method="POST">
-        <a href="lookingfordrivers.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Looking For Drivers</a>
-        <a href="lookingformaids.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Looking For Maids</a>
-        <br>
-        <br>
-        <a href="postajob.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Post a Job</a>
-        <a href="usermassage.php" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Massage</a>
-        <a href="processlogout.php?logout" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
+       <a href="lookingfordrivers.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Looking For Drivers</a>
+       <a href="lookingformaids.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Looking For Maids</a>
+       </div>
+    <div class="topnav">
+    <form action="" method="POST">
+    <a href="postajob.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Post a Job</a>
+        <a href="myworkers.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">My Workers</a>
+        <a href="usermassage.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Massage</a>
+        <a href="processlogout.php?logout" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Logout</a>
+</div> 
+       
+       
         </form>
     </div>
     <!-- Optional JavaScript -->

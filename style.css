@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(201, 235, 232);
+
+    margin: 50px;
+  }
+.rpw{
+    margin: 40px;
+    text-align: center;
+}
+p {
+    color: rgb(83, 95, 51);
+    font-size: large;
+}
+.topnav{
+    margin: auto;
+   
+}

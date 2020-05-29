@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="style.css">
     <title>User Sign in</title>
   </head>
   <body>
-    <h1>User Sign in</h1>
+  <a class="btn btn-outline-info" href="usersignin.php" role="button">User Sign In</a>
 	 <?php require_once 'processuserlogin.php'; ?>
     <div class="row justify-content-center">
         <form action="processuserlogin.php" method="POST">
@@ -27,10 +27,11 @@
                 <button type="submit" class="btn btn-primary" name="signup">sign in</button>
             </div>
 		</form>
+    </div>
     <?php
       if(@$_GET['Incorrect']==true){
     ?>
-      <div class="alert-light text-danger">
+      <div style="text-align:center;" class="text-danger">
       <?php echo $_GET['Incorrect'] ?>
       
       </div>
@@ -38,7 +39,7 @@
       }
 
     ?>
-    </div>
+   
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

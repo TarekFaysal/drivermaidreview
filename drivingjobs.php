@@ -12,12 +12,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="style.css">
     <title>Driving Job List</title>
   </head>
   <body>
   <div class="container">
-    <h1>Driving Job List</h1>
+  <a class="btn btn-outline-info" href="drivingjobs.php" role="button">Driving Job List</a>
+
     <?php 
     
       $servername = "localhost";
@@ -36,14 +37,14 @@
     ?>
     <div class="rpw justify-content-center">
       <table class="table">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th>Posted By</th>
             <th>Phone No.</th>
             <th>Adress</th>
             <th>Salary</th>
             <th>Details</th>
-            <th>Action</th>
+            
           </tr>
         </thead>
     <?php 
@@ -55,14 +56,12 @@
           <td><?php echo $row['useradress']; ?></td>
           <td><?php echo $row['salary']; ?></td>
           <td><?php echo $row['details']; ?></td>
-          <td>
-          <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Hire Me</a>
-          </td>
+          
         </tr>
         <?php } ?>
       <?php endwhile; ?>
       </table>
-
+      <a href="worker.php" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Go Back</a>    
     </div>
     </div>
     <?php

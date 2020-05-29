@@ -15,11 +15,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>Message to Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Conversation with Admin</title>
   </head>
   <body>
-    <h1>Message to Admin</h1>
+  <a class="btn btn-outline-info" href="usermassage.php" role="button">Conversation with Admin</a>
+
 	
 	
  <?php require_once 'usermessagetoadmin.php'; ?>
@@ -41,22 +42,35 @@
         </form>
     </div>
 <br/><br/>
-<b>Reply Admin:</b>
+
+<div class="massage" style=" width:500px; align-content: center;">
+<div class="blockquote text-left">Admin:</div>
+
 
 <?php
 //Connect to your database....
 $con=mysqli_connect("localhost","root","root","workerreview");
-$contact_array = mysqli_query($con,"SELECT * FROM massage WHERE toperson = '$userid' ORDER BY massageid ASC");
+$contact_array = mysqli_query($con,"SELECT * FROM massage WHERE toperson = '$userid' or fromperson = '$userid' ORDER BY massageid ASC");
 while($row = mysqli_fetch_array($contact_array))
 {
 
-echo"<br/>";
-echo"Message: ";
-echo $row['massage'];
-echo"<br/>";
+
+  if($row['fromperson']=='1234'){
+    ?>
+    <div class="leftmassage" style="text-align:left;color:red; border:20px"> 
+    <?php echo $row['massage'];?></div>
+    <?php
+  }else{?>
+    <div class="rightmassage" style="text-align:right;color:blue"> 
+    <?php echo $row['massage'];?></div>
+  <?php }
+  
 
 }
 ?>
+<a href="user.php" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Go Back</a>    
+</div>
+
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

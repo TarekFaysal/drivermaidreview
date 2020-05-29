@@ -10,12 +10,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="style.css">
     <title>Maids List</title>
   </head>
   <body>
+  <a class="btn btn-outline-info" href="lookingformaids.php" role="button">Maids List</a>
   <div class="container">
-    <h1>Maids List</h1>
+  
     <?php 
     
       $servername = "localhost";
@@ -32,9 +33,57 @@
       $sql = "SELECT * FROM worker";
       $result = mysqli_query($conn,$sql) or die(mysqli_erro($mysqli));
     ?>
+    <?php
+      if(isset($_POST['hirebtn'])){
+        $workerid= $_POST['hirebtn'];
+        $userid= $_SESSION['userid'];
+        $sql = "INSERT INTO `contract`(`userid`, `workerid`) VALUES ('$userid','$workerid')";
+    if ($conn->query($sql) === TRUE) {
+      echo "Congratulation! You just hired ". $workerid;
+    } else {
+      echo "Sorry! You already hired ". $workerid;
+    }
+      }
+
+    ?>
+    <?php
+      if(isset($_POST['reviewbtn'])){
+        $workerid= $_POST['reviewbtn'];
+        $userid= $_SESSION['userid'];
+        
+        ?>
+        <div class="rpw justify-content-center">
+        <h2> Review Of <?php echo $workerid?> </h2>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Reviewed By</th>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <?php
+        $sql4 = "SELECT * FROM workerreview where workerid = '".$workerid."'";
+        $result4 = mysqli_query($conn,$sql4) or die(mysqli_erro($mysqli));
+        while($row = $result4->fetch_assoc()):?>
+         
+          <tr>
+            <td><?php echo $row['userid']; ?></td>
+            <td><?php echo $row['review']; ?></td>
+            </tr>
+           
+      <?php endwhile; ?>
+      </table>
+            </div><?php
+       
+
+   
+      }
+
+    ?>
+
     <div class="rpw justify-content-center">
       <table class="table">
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th>Name</th>
             <th>Phone</th>
@@ -50,6 +99,7 @@
       while($row = $result->fetch_assoc()):?>
         <?php if($row['wtype']==0){?>
         <tr>
+        <form action="" method="POST" role="form">
           <td><?php echo $row['workername']; ?></td>
           <td><?php echo $row['workerphone']; ?></td>
           <td><?php echo $row['workeradress']; ?></td>
@@ -62,16 +112,20 @@
             }?></td>
           <td><?php echo $row['minimumwage']; ?></td>
           <td>
-          <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">See Review</a>
+              
+              <button type="submit" class="btn btn-primary btn-lg active" role="button" name="reviewbtn" value="<?php echo $row['workerid'];?>">See Review</button>
           </td>
           <td>
-          <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Hire</a>
+            
+                <button type="submit" class="btn btn-primary btn-lg active" role="button" name="hirebtn" value="<?php echo $row['workerid'];?>">Hire</button>
+		      
           </td>
+          </form>
         </tr>
         <?php } ?>
       <?php endwhile; ?>
       </table>
-
+      <a href="user.php" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Go Back</a>    
     </div>
     </div>
     <?php

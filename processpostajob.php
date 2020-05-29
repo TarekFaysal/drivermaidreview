@@ -28,9 +28,9 @@ if (isset($_POST['postajob'])){
 
     $sql = "INSERT INTO `jobs`(`jobid`, `userid`, `wtype`, `salary`, `details`) VALUES ('$jobid','$userid','$wtype','$salary','$details')";
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        header("location:user.php");
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        header("location:postajob.php?Incorrect= You entered wrong credentials, Try again");
     }
 }
 

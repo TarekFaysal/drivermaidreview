@@ -30,7 +30,7 @@ if (isset($_POST['submit'])){
 
     $sql ="INSERT INTO `massage` ( `fromperson`, `toperson`, `massage`) VALUES ( '$fromperson', '$toperson', '$massage ')"; 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        header("location:workermassage.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

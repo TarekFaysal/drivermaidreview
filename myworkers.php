@@ -1,5 +1,6 @@
 <?php session_start();
       if(isset($_SESSION['userid'])){ 
+        $userid= $_SESSION['userid'];
         ?>
 
 <!doctype html>
@@ -12,13 +13,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>Drivers List</title>
+    <title>My workers</title>
   </head>
   <body>
-  <a class="btn btn-outline-info" href="lookingfordrivers.php" role="button">Drivers List</a>
-
+  <a class="btn btn-outline-info" href="myworkers.php" role="button">My Workers</a>
   <div class="container">
-
+    
     <?php 
     
       $servername = "localhost";
@@ -32,59 +32,70 @@
       if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
       }
-      $sql = "SELECT * FROM worker";
+      $sql = "SELECT * FROM `contract`, worker WHERE userid='$userid' and contract.workerid = worker.workerid";
       $result = mysqli_query($conn,$sql) or die(mysqli_erro($mysqli));
     ?>
-    <?php
-      if(isset($_POST['hirebtn'])){
-        $workerid= $_POST['hirebtn'];
-        $userid= $_SESSION['userid'];
-        $sql = "INSERT INTO `contract`(`userid`, `workerid`) VALUES ('$userid','$workerid')";
-    if ($conn->query($sql) === TRUE) {
-        echo "Congratulation! You just hired ". $workerid;
-    } else {
-        echo "Sorry! You already hired ". $workerid;
-      
-    }
-      }
-
-    ?>
-
-  <?php
+    <?php 
       if(isset($_POST['reviewbtn'])){
-        $workerid= $_POST['reviewbtn'];
+        $workerid= $_SESSION['workerid'];
         $userid= $_SESSION['userid'];
+        $review= $_POST['review'];
+  
+        $sql = "INSERT INTO `workerreview`(`userid`, `workerid`, `review`) VALUES ('$userid','$workerid','$review')";
+        if ($conn->query($sql) === TRUE) {
+         ?> <h2> Thanks For The Review! </h2><?php
         
+        //check if the records exist to delete or not
+        $check = "SELECT * from `contract` where userid='$userid' and workerid= '$workerid'";
+        $result2 = mysqli_query($conn,$check) or die(mysqli_erro($mysqli));
+        //$check = mysql_query("Select * from contract where workerid= '$workerid'") or die("not found".mysql_error());
+      
+        //if ($conn->query($check) === TRUE) {
+          if($result2){
+          //means record found and can be deleted
+          $sql2 = "DELETE FROM `contract` WHERE userid='$userid' and workerid='$workerid'";
+          //$queryDelete = mysql_query("DELETE FROM `contract` WHERE userid='$userid' and workerid='$workerid'") or die("not deleted".mysql_error());
+          if ($conn->query($sql2) === TRUE) {
+          }
+        }
+        else{
+          //record doesn't exists warning
+        }
+
+      
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        
+      } 
+      
+      
+      ?>
+      
+    
+    
+
+
+    <?php
+      if(isset($_POST['endjobbtn'])){
+        $workerid= $_POST['endjobbtn'];
+        $_SESSION['workerid']=$workerid;
+        $userid= $_SESSION['userid'];
         ?>
-        <div class="rpw justify-content-center">
-        <h2> Review Of <?php echo $workerid?> </h2>
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th>Reviewed By</th>
-            <th>Review</th>
-          </tr>
-        </thead>
-        <?php
-        $sql4 = "SELECT * FROM workerreview where workerid = '".$workerid."'";
-        $result4 = mysqli_query($conn,$sql4) or die(mysqli_erro($mysqli));
-        while($row = $result4->fetch_assoc()):?>
-         
-          <tr>
-            <td><?php echo $row['userid']; ?></td>
-            <td><?php echo $row['review']; ?></td>
-            </tr>
-           
-      <?php endwhile; ?>
-      </table>
-            </div><?php
-       
-
-   
-      }
-
-    ?>
-
+        <form action="" method="POST">
+		
+		        <div class="form-group">
+            <h2> Please Give Review for <?php echo $workerid?> </h2>
+                <input type="text" name="review" class="form-control" placeholder="Give review in details..">
+            </div>
+			
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" name="reviewbtn" value="<?php echo $row['workerid'];?>">Save Review</button>
+            </div>
+		</form>
+        
+      <?php } ?>
 
     <div class="rpw justify-content-center">
       <table class="table">
@@ -95,14 +106,13 @@
             <th>Adress</th>
             <th>Age</th>
             <th>Gender</th>
-            <th>Minimum Wage</th>
-            <th>Review</th>
-            <th>Hire</th>
+            <th>Worker Type</th>
+            <th>End Job</th>
           </tr>
         </thead>
     <?php 
       while($row = $result->fetch_assoc()):?>
-        <?php if($row['wtype']==1){?>
+    
         <tr>
         <form action="" method="POST" role="form">
           <td><?php echo $row['workername']; ?></td>
@@ -116,19 +126,21 @@
               echo "Female";
             }
               ?></td>
-          <td><?php echo $row['minimumwage']; ?></td>
-          <td>
-              
-              <button type="submit" class="btn btn-primary btn-lg active" role="button" name="reviewbtn" value="<?php echo $row['workerid'];?>">See Review</button>
-          </td>
+          <td><?php 
+            if($row['wtype']==1){
+              echo "Driver"; 
+            }else{
+              echo "Maid";
+            }
+              ?></td>
           <td>
             
-                <button type="submit" class="btn btn-primary btn-lg active" role="button" name="hirebtn" value="<?php echo $row['workerid'];?>">Hire</button>
+                <button type="submit" class="btn btn-primary btn-lg active" role="button" name="endjobbtn" value="<?php echo $row['workerid'];?>">End Job</button>
 		      
           </td>
           </form>
         </tr>
-        <?php } ?>
+    
       <?php endwhile; ?>
       </table>
       <a href="user.php" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Go Back</a>    

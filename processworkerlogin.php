@@ -24,14 +24,14 @@ if(isset($_POST['workerid'])){
     $result=mysqli_query($conn, $sql);
     
     if(mysqli_num_rows($result)==1){
-        echo " You Have Successfully Logged in";
+        
         $_SESSION['workerid']=$_POST['workerid'];
         header("location:worker.php");
         exit();
     }
     else{
-        echo " You Have Entered Incorrect Password";
-        header("location:workersignin.php?Incorrect= You entered incorrect password, Try again");
+
+        header("location:workersignin.php?Incorrect= You entered Wrong Credentials, Try again");
         exit();
     }
         
